@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<div class = "container">
+  <div class = "row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-secondary">Current Flights available (click to purchase tickets)</li>
+        <div ng-repeat = "flight in profileCtrl.flights " ng-click = "profileCtrl.save(flight)">
+          <li class="list-group-item list-group-item-action list-group-item-success">Flight to {{flight.destination}} from {{flight.origin}} <br>
+            Departing at: {{flight.offset +8}}:00 <br>
+            Arriving at: {{flight.offset + 8 + flight.flightTime}}:00
+          </li>
+        </div>
+      </ul>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <label for="select origin"> Select origin: </label>
+    <select ng-model="profileCtrl.origin" ng-options="location.city for location in profileCtrl.locations">
+    </select>
+    <label for="select origin"> Select destination: </label>
+    <select ng-model="profileCtrl.destination" ng-options="location.city for location in profileCtrl.locations">
+    </select>
+    <button>search</button>
+    <li class="list-group-item list-group-item-secondary">All flights available to destination</li>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-secondary">Previously Booked Flights (click to diplay path on map)</li>
+          <div ng-repeat = "itinerary in profileCtrl.user.itineraries " ng-click = "">
+            <li class="list-group-item list-group-item-action list-group-item-success">Flightplan to {{itinerary.destination}} from {{itinerary.origin}}
+            </li>
+            <div ng-repeat = "flight in itinerary.flights">
+              <li class="list-group-item list-group-item-action list-group-item-success">Flight to {{flight.destination}} from {{flight.origin}} <br>
+                Departing at: {{flight.offset +8}}:00 <br>
+                Arriving at: {{flight.offset + 8 + flight.flightTime}}:00
+              </li>
+            </div>
+          </div>
+        </ul>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div map-lazy-load =
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyD0tQj5gJDazOGmTT5o2JNHPHy7wVPQS1A"
+       map-lazy-load-params="https://maps.google.com/maps/api/js">
+        <ng-map center="{{profileCtrl.center}}" zoom="{{profileCtrl.zoom}}"></ng-map>
+      </div>
+      <!-- before google maps was free -->
+      <p> required billing to be enable mapping</p>
+    </div>
+  </div>
+</div>
