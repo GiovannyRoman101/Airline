@@ -17,7 +17,7 @@ export default class MainController {
 
     $scope.intervalPromise = $interval(function () {
       $scope.refresh()
-    }, 1000)
+    }, 5000)
     $scope.refresh()
   }
 }

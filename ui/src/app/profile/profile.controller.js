@@ -13,13 +13,14 @@ export default class ProfileController {
     ctrl.flights
     ctrl.user
     ctrl.locations
-
+    ctrl.origin
+    ctrl.destination
+    ctrl.itineraries
     ctrl.col = 0
 
     ctrl.getUser = function () {
       profileService.getUser($stateParams.email).then(function (result) {
         ctrl.user = result
-        console.log(ctrl.user)
       })
     }
 
@@ -36,27 +37,17 @@ export default class ProfileController {
         ctrl.getUser()
       })
     }
+    // gets all the flights currently available
     ctrl.getFlights = function () {
       profileService.getFlights().then(function (flights) {
         ctrl.flights = flights
       })
     }
 
-    // need test
-    ctrl.mapRoute = function (itinerary) {
-      // resets the path so different paths are not displayed
-      ctrl.paths = []
-      for (let i = 0; i < itinerary.flights.length; i++) {
-        let flight = itinerary.flights[i]
-        ctrl.getflightPath(flight.origin, flight.destination)
-      }
-      ctrl.col = 0
-    }
+    // place markers on the map for all locations
     $scope.placeMarkers = function () {
       profileService.getLocations().then(function (result) {
         ctrl.locations = result
-        console.log(ctrl.locations)
-
         ctrl.locations.forEach(function (marker) {
           ctrl.addMarker(marker.latitude, marker.longitude)
         })
@@ -81,14 +72,30 @@ export default class ProfileController {
       })
     }
 
-    // gets all possible routes (need test)
-    ctrl.allPaths = function () {
-      profileService.findFlightRoutes(ctrl.origin, ctrl.destination).then(function (result) {
-        ctrl.flightplans = result
+    // saves an entire itinerary
+    ctrl.saveItinerary = function (itinerary) {
+      profileService.save($stateParams.email, itinerary).then(result => {
+        ctrl.getUser()
       })
     }
 
-    // need test
+    ctrl.allPaths = function () {
+      profileService.getFlightsfromOriginToDestin(ctrl.origin.city, ctrl.destination.city).then(function (result) {
+        ctrl.itineraries = result
+      })
+    }
+
+    // displays path on the map
+    ctrl.mapRoute = function (itinerary) {
+      // resets the path so different paths are not displayed
+      ctrl.paths = []
+      for (let i = 0; i < itinerary.flights.length; i++) {
+        let flight = itinerary.flights[i]
+        ctrl.getflightPath(flight.origin, flight.destination)
+      }
+      ctrl.col = 0
+    }
+
     ctrl.getflightPath = function (origin, destination) {
       profileService.getMarkerByCityName(origin).then(function (start) {
         origin = start
@@ -108,7 +115,7 @@ export default class ProfileController {
 
     $scope.intervalPromise = $interval(function () {
       $scope.refresh()
-    }, 1000)
+    }, 5000)
     $scope.refresh()
     $scope.placeMarkers()
   }

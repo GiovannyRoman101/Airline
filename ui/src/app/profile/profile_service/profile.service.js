@@ -11,6 +11,9 @@ export default class ProfileService {
     service.getFlights = function () {
       return service.$http.get(apiUrl + '/flights').then(result => result.data)
     }
+    service.getFlightsfromOriginToDestin = function (origin, destination) {
+      return service.$http.get(apiUrl + '/flights/' + origin + '/' + destination).then(result => result.data)
+    }
     service.save = function (email, itineraries) {
       return service.$http.put(apiUrl + '/users/' + email + '/Itineraries', itineraries).then(result => result.data)
     }

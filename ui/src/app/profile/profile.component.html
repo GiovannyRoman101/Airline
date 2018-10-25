@@ -5,10 +5,10 @@
       <ul class="list-group">
         <li class="list-group-item list-group-item-secondary">Current Flights available (click to purchase tickets)</li>
         <div ng-repeat = "flight in profileCtrl.flights " ng-click = "profileCtrl.save(flight)">
-          <li class="list-group-item list-group-item-action list-group-item-success">Flight to {{flight.destination}} from {{flight.origin}} <br>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Flight from {{flight.origin}} to {{flight.destination}}<br>
             Departing at: {{flight.offset +8}}:00 <br>
             Arriving at: {{flight.offset + 8 + flight.flightTime}}:00
-          </li>
+          </button>
         </div>
       </ul>
   </div>
@@ -19,19 +19,34 @@
     <label for="select origin"> Select destination: </label>
     <select ng-model="profileCtrl.destination" ng-options="location.city for location in profileCtrl.locations">
     </select>
-    <button>search</button>
-    <li class="list-group-item list-group-item-secondary">All flights available to destination</li>
+    <button ng-click = "profileCtrl.allPaths()">search</button>
+    <li class="list-group-item list-group-item-secondary">All flights available from origin to destination</li>
+    <div ng-repeat= "itinerary in profileCtrl.itineraries" ng-click = "profileCtrl.saveItinerary(itinerary)">
+      <button type="button" class="btn btn-primary btn-lg btn-block"> Flight to {{itinerary.destination}} from {{itinerary.origin}}<br>
+        Total Flight Time: {{itinerary.flightTime}} hours<br>
+        Total layover time: {{itinerary.layovertime}} hours
+      </button>
+      <div ng-repeat= "flight in itinerary.flights">
+        <li class="list-group-item list-group-item-action list-group-item-success"> Flight to {{flight.destination}} from {{flight.origin}} <br>
+          Departing at: {{flight.offset +8}}:00 <br>
+          Arriving at: {{flight.offset + 8 + flight.flightTime}}:00
+        </li>
+      </div>
+
+    </div>
   </div>
   </div>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <ul class="list-group">
           <li class="list-group-item list-group-item-secondary">Previously Booked Flights (click to diplay path on map)</li>
-          <div ng-repeat = "itinerary in profileCtrl.user.itineraries " ng-click = "">
-            <li class="list-group-item list-group-item-action list-group-item-success">Flightplan to {{itinerary.destination}} from {{itinerary.origin}}
-            </li>
+          <div ng-repeat = "itinerary in profileCtrl.user.itineraries " ng-click = "profileCtrl.mapRoute(itinerary)">
+            <button type="button" class="btn btn-secondary btn-lg btn-block">Flightplan from {{itinerary.origin}} to {{itinerary.destination}} <br>
+              Total FlightTime: {{itinerary.flightTime}} hr/s<br>
+              Total Layover Time: {{itinerary.layovertime}} hr/s
+            </button>
             <div ng-repeat = "flight in itinerary.flights">
-              <li class="list-group-item list-group-item-action list-group-item-success">Flight to {{flight.destination}} from {{flight.origin}} <br>
+              <li class="list-group-item list-group-item-action list-group-item-success">Flight from {{flight.origin}} to {{flight.destination}}  <br>
                 Departing at: {{flight.offset +8}}:00 <br>
                 Arriving at: {{flight.offset + 8 + flight.flightTime}}:00
               </li>

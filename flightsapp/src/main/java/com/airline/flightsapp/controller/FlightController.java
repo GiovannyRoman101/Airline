@@ -32,7 +32,7 @@ public class FlightController {
 		return flightservice.getDailyFlightList();
 	}
 	
-	@RequestMapping(value = "{origin}/{destination}",method = RequestMethod.GET)
+	@RequestMapping(value = "/{origin}/{destination}",method = RequestMethod.GET)
 	public ArrayList<Itinerary> getItinerariesTo(@PathVariable String origin, @PathVariable String destination){
 		return this.flightservice.getItinerariesTo(origin,destination);
 	}

@@ -904,7 +904,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: plum;
+  background-color: WhiteSmoke;
 }
 input,
 button,
@@ -1216,7 +1216,7 @@ a.bg-danger:hover {
 .page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
-  border-bottom: 10px solid purple;
+  border-bottom: 10px solid red;
 }
 ul,
 ol {
@@ -2878,10 +2878,28 @@ fieldset[disabled] .btn-default.active {
   color: #fff;
   background-color: #333;
 }
+.btn-secondary {
+  color: red;
+  text-align: left;
+  background-color: Navy;
+  border-color: red;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary.focus,
+.btn-secondary:active,
+.btn-secondary.active,
+.open > .dropdown-toggle.btn-secondary {
+  color: white;
+  background-color: red;
+  border-color: white;
+}
+
 .btn-primary {
-  color: springgreen;
-  background-color: purple;
-  border-color: springgreen;
+  color: navy;
+  text-align: left;
+  background-color: White;
+  border-color: navy;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -2889,9 +2907,9 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  color: darkgreen;
-  background-color: plum;
-  border-color: darkgreen;
+  color: red;
+  background-color: navy;
+  border-color: red;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -2923,6 +2941,7 @@ fieldset[disabled] .btn-primary.active {
   color: #428bca;
   background-color: #fff;
 }
+
 .btn-success {
   color: #fff;
   background-color: #5cb85c;
@@ -4650,8 +4669,8 @@ a.list-group-item.active > .badge,
   padding: 30px 15px;
   margin-bottom: 30px;
   text-align: center;
-  color: springgreen;
-  background-color: purple;
+  color: Navy;
+  background-color: red;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4995,12 +5014,13 @@ a.list-group-item:focus {
   color: #e1edf7;
 }
 .list-group-item-success {
-  color: white;
-  background-color: slategray;
+  color: navy;
+  background-color: red;
+  border-color: navy;
 }
 .list-group-item-secondary {
   color: white;
-  background-color: indigo;
+  background-color: Navy;
 }
 a.list-group-item-success {
   color: #3c763d;
