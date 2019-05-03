@@ -1,5 +1,6 @@
 # Airline
 
+##Overview
 Airline is a web application that allows users to view flights and create accounts.
 When users are logged in, they are able to book flights, view previously booked flights, and
 see all possible flights from one location to another. This includes connecting flights.
@@ -19,6 +20,9 @@ and to run it,
 ```bash
 npm start
 ```
+#Screenshots
+![](airline.gif)
+![screenshot](ScreenShot1)
 
 #Author/s
 Giovanny Roman
