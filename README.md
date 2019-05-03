@@ -22,7 +22,7 @@ npm start
 ```
 #Screenshots
 ![](airline.gif)
-![screenshot](ScreenShot1)
+![screenshot](ScreenShot1.png)
 
 #Author/s
 Giovanny Roman
